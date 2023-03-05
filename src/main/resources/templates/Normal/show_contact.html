@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="Normal/Base::Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Your Contact</title>
+    <style>
+        .myprofile {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border: 2px solid black;
+        }
+        
+        .search-result {
+            background-color: white;
+            border: 1px solid grey;
+            color: black;
+            font-size: medium;
+            position: absolute;
+            padding: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <div>
+            <diV class="card text-center" style="background-color: black; color:lightgreen; font-size: 40px;">
+                <div class="card-body">
+                    <caption>YOUR CONTACT</caption>
+                    <div class="search mt-2">
+                        <input type="search" class="form-control" placeholder="Search your contacts">
+                        <div class="search-result">
+                        <!-- Result come here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered" style="background-color: blue; color: white;">
+                <thead style="font-size: 25px">
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>PHONE</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody style="font-size: 20px;">
+                    <tr th:each="c : ${contact}">
+                        <td scope="row" th:text="${'c.C_id'}">1</td>
+                        <td>
+                            <img th:src="@{/Image/+${c.image}}">
+                            <!-- below line is used to make the name become the source to get user private page -->
+                            <a th:href="@{'/user/contact/'+${c.C_id}}"></a>
+                            <span th:text="${c.name}"></span>
+                        </td>
+                        <td th:text="${c.email}"></td>
+                        <td th:text="${c.phonenumber}"></td>
+                        <td>
+                            <a href="#" th:onclick="|deleteContact(${c.C_id})|" class="btn btn-danger btn-lg" style="border-color: black;">DELETE</a>
+                            <form method="post" th:action="@{'/user/update/'+${c.C_id}}">
+                                <button type="submit" href="#" class="btn btn-primary btn-lg mt-1" style="border-color: black; background-color: aquamarine;">UPDATE</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination part -->
+            <nav class="Page navigation">
+                <ul class="pagination">
+                    <li th:if="${currentpage != 0}" class="page-item"><a th:href="@{'/user/show-contact/'+${currentpage-1}}" class="page-link" href="#">&laquo;</a>
+                    </li>
+                    <li th:classappend="${currentpage==i-1?'active':''}" th:each="{:$(#numbers.sequence(1,totalpage))}" class="page-item"><a th:href="@{'/user/show-contact/'+${i-1}}" class="page-link" href="#"><span
+                                th:text="${i}"></span></a></li>
+                    <li th:if="${currentpage+1 != totalpage}" class="page-item"><a th:href="@{'/user/show-contact/'+${currentpage+1}}" class="page-link" href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+</body>
+
+</html>

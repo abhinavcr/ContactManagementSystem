@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org"
+	th:replace="Normal/Base::Layout(~{::section})">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<title>Settings</title>
+<style>
+.card-body {
+	margin-right: 10%;
+	margin-left: 10%;
+	background-color: black;
+	color: blue;
+}
+
+.form-control {
+	border: 2px solid white;
+	background-color: lightskyblue;
+	color: white;
+}
+
+.form-group {
+	padding-right: 10%;
+	padding-left: 10%;
+}
+</style>
+</head>
+
+<body>
+	<section>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+
+		<div class="card">
+			<div class="card-body">
+				<h1 class="mt-3 mb-3 text-center">Change Password</h1>
+				<form class="form" th:action="@{/user/change-password}"
+					method="post">
+					<div class="form-group">
+						<input type="password" class="form-control" name="oldpassword"
+							placeholder="Enter Old Password">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="newpassword"
+							placeholder="Enter new Password">
+					</div>
+					<div class="container text-center">
+						<button type="submit" class="btn btn-primary">CHANGE</button>
+						<button type="reset" class="btn btn-warning">RESET</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript">
+            $(document).ready(() => {
+                $(".item").removeClass("active");
+                $("#settings-link").addClass("active");
+            });
+        </script>
+	</section>
+</body>
+
+</html>

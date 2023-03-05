@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Base::Layout(~{::section})">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>FORGET EMAIL FORM</title>
+</head>
+
+<body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <section>
+        <div id="Login">
+            <div class="container" style="background-color: aqua; border:2px solid black;">
+                <div id="Login-row">
+                    <div id="Login-column">
+                        <form method="post" th:action="@{/sent-otp}" id="Login-box" class="form">
+                            <!-- Message show below the heading -->
+                            <div th:if="${session.message}" class="container">
+                                <div th:classappend="${'alert-'+session.message.type}" class="alert alert-success text-center" role="alert">
+                                    <span th:text="${session.message}"></span>
+                                </div>
+                                <!-- Below line is used to remove the message after showing showing at once. -->
+                                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                            </div>
+                            <h1 class="text-center mt-3 mb-3">Your Register Email</h1>
+                            <div class="form-group" style="padding-left: 10%; padding-right: 10%;">
+                                <input name="email" required="required" type="email" class="form-control" placeholder="Enter Your Email">
+                            </div>
+                            <div class="button text-center mb-3">
+                                <button class="btn btn-warning" style="border: 2px solid black">Send OTP</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+
+</html>

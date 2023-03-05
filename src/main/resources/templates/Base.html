@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+     th:fragment="Layout(content)">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+<body>
+	   <header>
+	      <div class="header">
+	            <nav align=left>
+	                  <div class="navbar">
+	                    <ul>
+	                      <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+	                      
+	                      <li class="nav-item"><a class="nav-link" href="#">ABOUT</a></li>
+	                      
+	                      <li class="nav-item"><a class="nav-link" th:href="@{/signin}" tabindex="-1" aria-desabled="true">LOGIN</a></li>
+	                      
+	                      <li class="nav-item"><a class="nav-link" th:href="@{/signup/}" tabindex="-1" aria-desabled="true">SIGNUP</a></li>
+	                    </ul>
+	                  </div>
+	            </nav>
+	      </div>
+	   </header>	
+	   <main>
+	      <div class="main">
+	          <video src="pexels-tima-miroshnichenko-5662878.mp4" type="video/mp4" controls autoplay loops ></video>
+	          <div th:repalce="${content}"></div>
+	      </div>
+	   </main> 
+	   <footer text-align="center">
+	      <div class="footer">
+	            <pre>CopyRight &copy; 2022 
+	            ContactManagementSystem Co.,Ltd.</pre>
+	            <br>
+	            <ul>
+	                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+	                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+	                <li><a href="#"><i class="fa fa-whatsap"></i></a></li>
+	                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+	            </ul>
+	      </div>
+	   </footer>  
+</body>
+</html>

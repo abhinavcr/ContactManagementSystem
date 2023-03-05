@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+      th:replace="Base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>SIGNUP</title>
+</head>
+
+<body>
+    <section>
+      <img alt="" th:src="@{/Image/registrationbg.jpg}">
+      <div class="signup">
+        <form novalidate th:action="@{/register}" method="post" th:object="${user}">
+            <div th:if="${sess.message}" th:classappend="${sess.message.type}" class="alert alert-primary" role="alert">
+               This is a primary alert—check it out!       <!-- But if we want the dynamic message then -->
+               <p th:text="${sess.message.content}"></p>
+               
+               <th:block th:text="${sess.removeAttribute('message')}"></th:block>
+            </div>
+            <div class="signup text-center">
+            <img alt="" th:src="@{/Image/registrationlogo.jpg}">
+            </div>
+            <div align="center">
+            <h1>SIGNUP HERE</h1>
+            </div>
+            <br>
+            <br>
+          <div>
+            <div>
+            <label name="name" for="name_">Name</label>
+            <input type="text" name="name" id="name_" placeholder="Enter your name" 
+                   th:value="$(user.name)">
+             <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}">
+                 Please choose a username.
+             </div>
+            </div>
+            <br>
+            <br>
+            <div>
+            <label name="email" for="email add_">Email Address</label>
+            <input type="text" name="email" id="email add_" placeholder="Enter your email address"
+                   th:value="$(user.email)">
+            </div>
+            <br>
+            <br>
+            <div>
+            <label name="password" for="password_">Password</label>
+            <input type="password" name="password" id="password_" placeholder="Enter your password"
+                   th:value="$(user.password)">
+            </div>
+            <br>
+            <br>
+            <div>
+            <label name="explain" for="explain_">Write the problem you face during use</label>
+            </div>
+            <br>
+            <div>
+            <textarea type="description" name="about" id="explain_" rows="3" cols="65" placeholder="Write your feedback"
+                      th:value="$(user.about)"></textarea>
+            </div>
+            <br>
+            <br>
+            <div align="center">
+            <input type="checkbox" name="agreement" id="agreement_" th:value="$(user.aggrement)">
+            <label name="agreement" for="agreement_">Accept terms and conditions</label>
+            </div>
+            <br>
+            <br>
+            <div>
+            <input type="submit" value="Submit" class="btn bg-primary text-white">
+            <button type="reset" class="btn bg-primary text-white">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+</body>
+</html>

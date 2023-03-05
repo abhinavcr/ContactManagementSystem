@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+      th:replace="Normal/Base::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Contact</title>
+	<style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .image {
+            margin-left: 200px;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+        
+        .component {
+            margin-left: 50px;
+        }
+        
+        .addcontact {
+            margin-left: 400px;
+            background-color: aquamarine;
+            margin-right: 400px;
+            height: 100%;
+        }
+        
+        .btn-default {
+            background-color: blue;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin-bottom: 15px;
+            margin-left: 150px;
+        }
+        
+        .form-control {
+            height: 50px;
+            background-color: black;
+            color: aliceblue;
+            border: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+   <section>
+   <div class="addcontact">
+            <form role="form" 
+                  action="#"
+                  th:object="${contact}"
+                  enctype="multipart/form-date"
+                  method="post"
+                  th:action="@{/user/process-contact}">     
+                <div class="image">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1485/1485097.png" style="width: 125px; height:125px;">
+                    <h1 style="margin-top: 10px; margin-left: -25px; color: blue;">ADD CONTACT</h1>
+                </div>
+                <br>
+                <hr style="border-color: white; border-width: 5px;">
+                <br>
+                <div class="forms">
+                    <div class="component" role="form">
+                        <div class="input-group">
+                            <span class="input-group-addon"><img
+                                    src="https://static.thenounproject.com/png/1029230-200.png"
+                                    style="width: 50px; height: 50px; margin-bottom: -55px; margin-left: -8px;"></span>
+                           <!-- Below we write required after type because show the message at form -->
+                           <input required type="text" class="form-control" style="margin-left: 45px;" rows="3" size="40" placeholder="Enter Your Name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><img
+                                    src="https://cdn0.iconfinder.com/data/icons/pixel-perfect-at-24px-volume-6/24/2135-512.png"
+                                    style="width: 40px; height:40px;"></span>
+                            <input class="form-control" required type="text" size="40" placeholder="Enter Your Second Name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><img
+                                    src="https://cdn-icons-png.flaticon.com/512/455/455705.png"
+                                    style="width: 40px; height: 40px;"></span>
+                            <input class="form-control" required type="tel" max="13" min="10" placeholder="Enter Your Phone Number">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><img
+                                    src="https://cdn-icons-png.flaticon.com/512/2165/2165310.png"
+                                    style="width: 40px; height: 40px;"></span>
+                            <input class="form-control" required type="email" size="40" placeholder="Enter Your Email-ID">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><img
+                                    src="https://www.shareicon.net/data/2015/09/28/108633_office_512x512.png"
+                                    style="width: 40px; height: 40px;"></span>
+                            <textarea id="mytextarea" class="form-control1" required type="text" rows="3" size="40"></textarea>
+                        </div>
+                        <br>
+                        <!-- This is a image file -->
+                        <div class="imagefile">
+                            <input type="file" name="profileimage"/>
+                        </div>
+                        <br>
+                        <div align="center">
+                            <button class="btn btn-default">SUBMIT</button>
+                        </div>
+                    </div>
+                 </div>
+              </form>
+           </div>
+           
+           <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+           
+           <script>
+              tinymce.init({
+                 selector: '#mytextarea'
+             });
+           </script>
+       </section>
+    </body>
+</html>                  
+        
+             
